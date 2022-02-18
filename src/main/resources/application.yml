@@ -1,0 +1,9 @@
+#server:
+##  ssl:
+##    key-store: src\main\resources\springboot.p12
+##    key-store-password:
+##    key-store-type: pkcs12
+##    key-alias: springboot
+##    key-password:
+#  address: 192.168.2.42
+#  port: 8443

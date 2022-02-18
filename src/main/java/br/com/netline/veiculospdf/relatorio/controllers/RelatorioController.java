@@ -8,21 +8,27 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
 public class RelatorioController {
 
-    @PostMapping(value = "/gerar-pdf", produces = "application/text")
-    public ResponseEntity<byte[]> gerarPdf(@RequestBody HashMap<String, Object> flows) {
+    @CrossOrigin
+    @GetMapping(value = "/")
+    public String home() {
+        return "Servidor ON";
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/gerar-pdf", produces = "application/text", consumes = "application/json")
+    public ResponseEntity<byte[]> gerarPdf(@RequestBody HashMap<String, Object> flows, HttpServletRequest request) {
         RelatorioBuilder relatorioBuilder = new RelatorioBuilder();
+        System.out.println(request.getRequestURL().toString());
         try {
             String periodo = String.valueOf(flows.get("periodo"));
             String emailUsuario = String.valueOf(flows.get("email"));
