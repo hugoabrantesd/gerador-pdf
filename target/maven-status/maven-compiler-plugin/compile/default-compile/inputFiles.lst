@@ -1,0 +1,10 @@
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\model\LogModel.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\model\Utils.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\connection\JpaPersistence.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\Main.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\builder\RelatorioBuilder.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\controllers\RelatorioController.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\builder\Relatorio.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\repository\LogRepository.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\cors\CorsConfig.java
+C:\JavaProjects\gerador-pdf\src\main\java\br\com\netline\veiculospdf\relatorio\model\FluxoModel.java
