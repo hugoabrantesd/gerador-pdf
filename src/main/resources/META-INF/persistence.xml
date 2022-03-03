@@ -10,7 +10,7 @@
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://100.64.206.223:5432/controleveiculos" />
             <property name="javax.persistence.jdbc.user" value="hugo" />
-            <property name="javax.persistence.jdbc.password" value="13111992"/>
+            <property name="javax.persistence.jdbc.password" value="13111992" />
 
             <property name="hibernate.hbm2ddl.auto" value="update" />
 
