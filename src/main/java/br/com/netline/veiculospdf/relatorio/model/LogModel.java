@@ -3,6 +3,7 @@ package br.com.netline.veiculospdf.relatorio.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
@@ -10,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Builder
-public class LogModel {
+public class LogModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
