@@ -25,7 +25,7 @@ public class RelatorioController {
     @CrossOrigin
     @GetMapping(value = "/")
     public String home() {
-        return "Servidor ONLINE!";
+        return "Servidor ON!";
     }
 
     @CrossOrigin
