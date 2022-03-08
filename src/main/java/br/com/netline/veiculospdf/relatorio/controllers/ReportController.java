@@ -1,9 +1,9 @@
 package br.com.netline.veiculospdf.relatorio.controllers;
 
-import br.com.netline.veiculospdf.relatorio.builder.RelatorioBuilder;
-import br.com.netline.veiculospdf.relatorio.model.FluxoModel;
-import br.com.netline.veiculospdf.relatorio.model.LogModel;
-import br.com.netline.veiculospdf.relatorio.repository.LogRepository;
+import br.com.netline.veiculospdf.relatorio.model.CasterModel;
+import br.com.netline.veiculospdf.relatorio.reportsBuilder.ReportBuilderCaster;
+import br.com.netline.veiculospdf.relatorio.reportsBuilder.ReportBuilderFlows;
+import br.com.netline.veiculospdf.relatorio.model.FlowModel;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import org.springframework.http.HttpHeaders;
@@ -13,14 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
-public class RelatorioController {
+public class ReportController {
 
     @CrossOrigin
     @GetMapping(value = "/")
@@ -31,8 +27,8 @@ public class RelatorioController {
     @CrossOrigin
     @PostMapping(value = "/gerar-pdf", produces = "application/text", consumes = "application/json")
     public ResponseEntity<byte[]> gerarPdf(@RequestBody HashMap<String, Object> flows, HttpServletRequest request) {
-        RelatorioBuilder relatorioBuilder = new RelatorioBuilder();
-        System.out.println(request.getRequestURL().toString());
+        ReportBuilderFlows relatorioBuilder = new ReportBuilderFlows();
+        //System.out.println(request.getRequestURL().toString());
         try {
             String periodo = String.valueOf(flows.get("periodo"));
             String emailUsuario = String.valueOf(flows.get("email"));
@@ -41,10 +37,10 @@ public class RelatorioController {
 
             List<LinkedTreeMap<String, Object>> js = new Gson().fromJson(flows.get("json").toString(), List.class);
 
-            List<FluxoModel> fluxosList = new ArrayList<>();
+            List<FlowModel> fluxosList = new ArrayList<>();
             for (LinkedTreeMap<String, Object> o : js) {
                 //System.out.println(o.get("kmSaida"));
-                fluxosList.add(FluxoModel.fromMap(o));
+                fluxosList.add(FlowModel.fromMap(o));
             }
 
             byte[] f = relatorioBuilder.gerarRelatorio(fluxosList, periodo, emailUsuario);
@@ -65,16 +61,11 @@ public class RelatorioController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/registerLog", produces = "application/text", consumes = "application/json")
-    public String registerLog(@RequestBody String logs, HttpServletRequest request) {
-        LogModel logReceived = new Gson().fromJson(logs, LogModel.class);
-        final LogRepository logRepository = new LogRepository();
-        if (logReceived != null) {
-            logReceived.setData(String.valueOf(new SimpleDateFormat(
-                    "dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime())));
-            logRepository.registerLog(logReceived);
-            return "200";
-        }
-        return "401";
+    @PostMapping(value = "/gerarRelatorioRodizio", produces = "application/text", consumes = "application/text")
+    public String generateReportCaster(@RequestBody String vehiclePlate, HttpServletRequest servletRequest){
+        //String plate = jsonPlate;
+        new ReportBuilderCaster().buildReport(vehiclePlate);
+        return "teste".toUpperCase();
     }
+
 }

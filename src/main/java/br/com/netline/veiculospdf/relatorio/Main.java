@@ -1,6 +1,7 @@
 package br.com.netline.veiculospdf.relatorio;
 
 import br.com.netline.veiculospdf.relatorio.model.LogModel;
+import br.com.netline.veiculospdf.relatorio.repository.CasterRepository;
 import br.com.netline.veiculospdf.relatorio.repository.LogRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+        // CasterRepository().getAllCasters("ABC1234");
 //        LogRepository repository = new LogRepository();
 //
 //        LogModel log = LogModel.builder()

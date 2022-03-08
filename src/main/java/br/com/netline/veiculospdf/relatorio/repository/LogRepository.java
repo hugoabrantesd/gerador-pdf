@@ -18,4 +18,14 @@ public class LogRepository {
 
         jpaPersistence.getEntityManager().close();
     }
+
+    public void getAllCasters(){
+        jpaPersistence.getEntityManager().getTransaction().begin();
+
+
+    }
+
 }
+
+
+

@@ -2,7 +2,7 @@ package br.com.netline.veiculospdf.relatorio.model;
 
 import com.google.gson.internal.LinkedTreeMap;
 
-public class FluxoModel {
+public class FlowModel {
 
     private String id;
     private String nomeTecnico;
@@ -17,7 +17,7 @@ public class FluxoModel {
     private String totalHoras;
     private String setorVeiculo;
 
-    public FluxoModel() {
+    public FlowModel() {
     }
 
     public String getId() {
@@ -116,8 +116,8 @@ public class FluxoModel {
         this.setorVeiculo = setorVeiculo;
     }
 
-    public static FluxoModel fromMap(LinkedTreeMap<String, Object> obj) {
-        FluxoModel flx = new FluxoModel();
+    public static FlowModel fromMap(LinkedTreeMap<String, Object> obj) {
+        FlowModel flx = new FlowModel();
         flx.setId(mapValueToString(obj.get("id")));
         flx.setNomeTecnico(mapValueToString(obj.get("nomeTecnico")));
         flx.setDataSaida(mapValueToString(obj.get("dataSaida")));

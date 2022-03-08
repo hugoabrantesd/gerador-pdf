@@ -1,6 +1,7 @@
-package br.com.netline.veiculospdf.relatorio.builder;
+package br.com.netline.veiculospdf.relatorio.reportsBuilder;
 
-import br.com.netline.veiculospdf.relatorio.model.FluxoModel;
+import br.com.netline.veiculospdf.relatorio.interfaces.ReportFlows;
+import br.com.netline.veiculospdf.relatorio.model.FlowModel;
 import br.com.netline.veiculospdf.relatorio.model.Utils;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
@@ -12,7 +13,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.List;
 
-public class RelatorioBuilder implements Relatorio {
+public class ReportBuilderFlows implements ReportFlows {
 
     private Paragraph paragraphTitleColumn(String title, int fontSize, BaseColor fontColor) {
         Paragraph p = new Paragraph();
@@ -30,37 +31,38 @@ public class RelatorioBuilder implements Relatorio {
 
     @Override
     public void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException {
-        Paragraph p = new Paragraph();
-        p.setAlignment(Element.ALIGN_LEFT);
-        p.add(new Chunk(
-                "Netline Telecom", new Font(Font.FontFamily.HELVETICA, 24, Element.TITLE, BaseColor.BLACK
-        )));
-        doc.add(p);
-
-        p = new Paragraph();
-        p.setAlignment(Element.ALIGN_LEFT);
-        p.add(new Chunk(
-                "Data: " + Utils.dateToString(),
-                new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
-                )));
-        doc.add(p);
-
-        p = new Paragraph();
-        p.setAlignment(Element.ALIGN_LEFT);
-        p.add(new Chunk(
-                "Identificador do usuário: " + emailUsuario,
-                new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
-                )));
-        doc.add(p);
-
-        p = new Paragraph(" ");
-        doc.add(p);
-        p = new Paragraph(" ");
-        doc.add(p);
+        ReportHeader.gerarCabecalho(doc, emailUsuario);
+//        Paragraph p = new Paragraph();
+//        p.setAlignment(Element.ALIGN_LEFT);
+//        p.add(new Chunk(
+//                "Netline Telecom", new Font(Font.FontFamily.HELVETICA, 24, Element.TITLE, BaseColor.BLACK
+//        )));
+//        doc.add(p);
+//
+//        p = new Paragraph();
+//        p.setAlignment(Element.ALIGN_LEFT);
+//        p.add(new Chunk(
+//                "Data: " + Utils.dateToString(),
+//                new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
+//                )));
+//        doc.add(p);
+//
+//        p = new Paragraph();
+//        p.setAlignment(Element.ALIGN_LEFT);
+//        p.add(new Chunk(
+//                "Identificador do usuário: " + emailUsuario,
+//                new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
+//                )));
+//        doc.add(p);
+//
+//        p = new Paragraph(" ");
+//        doc.add(p);
+//        p = new Paragraph(" ");
+//        doc.add(p);
     }
 
     @Override
-    public int gerarCorpo(List<FluxoModel> fluxos, Document doc) throws DocumentException {
+    public int gerarCorpo(List<FlowModel> fluxos, Document doc) throws DocumentException {
         PdfPTable table = new PdfPTable(7);
         table.setRunDirection(0);
         table.setWidthPercentage(100);
@@ -91,7 +93,7 @@ public class RelatorioBuilder implements Relatorio {
 
         int totKm = 0;
 
-        for (FluxoModel f : fluxos) {
+        for (FlowModel f : fluxos) {
             //int totKmParcial = 0;
             p1 = paragraphTitleColumn(f.getNomeTecnico(), 11, BaseColor.DARK_GRAY);
             p2 = customParagraph(f.getDataSaida() + " - "
@@ -130,7 +132,7 @@ public class RelatorioBuilder implements Relatorio {
     }
 
     @Override
-    public void gerarRodape(Document doc, List<FluxoModel> fluxos, int totKm, String periodo) throws DocumentException {
+    public void gerarRodape(Document doc, List<FlowModel> fluxos, int totKm, String periodo) throws DocumentException {
         Paragraph p = new Paragraph();
 
         p.setAlignment(Element.ALIGN_RIGHT);
@@ -183,7 +185,7 @@ public class RelatorioBuilder implements Relatorio {
     }
 
     @Override
-    public byte[] gerarRelatorio(List<FluxoModel> fluxos, String periodo, String emailUsuario) {
+    public byte[] gerarRelatorio(List<FlowModel> fluxos, String periodo, String emailUsuario) {
 
         Document doc = new Document();
         doc.setPageSize(PageSize.A4.rotate());

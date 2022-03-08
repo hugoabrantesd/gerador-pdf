@@ -17,6 +17,14 @@ public class CorsConfig {
                         .allowedMethods("GET","POST")
                         .allowedHeaders("*")
                         .allowedOrigins("*");
+                registry.addMapping("/registerLog")
+                        .allowedMethods("GET","POST")
+                        .allowedHeaders("*")
+                        .allowedOrigins("*");
+                registry.addMapping("/registerCaster")
+                        .allowedMethods("GET","POST")
+                        .allowedHeaders("*")
+                        .allowedOrigins("*");
 
             }
         };
