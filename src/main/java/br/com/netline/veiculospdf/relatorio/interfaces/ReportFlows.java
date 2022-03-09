@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ReportFlows <T> {
 
-    void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException;
+    void gerarCabecalho(Document doc, String emailUsuario, String plate) throws DocumentException;
 
     int gerarCorpo(List<T> object, Document doc) throws DocumentException;
 

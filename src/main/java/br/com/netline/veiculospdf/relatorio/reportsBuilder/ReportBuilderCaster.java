@@ -28,8 +28,13 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
 
 
     @Override
-    public void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException {
+    public void gerarCabecalho(Document doc, String emailUsuario, String plate) throws DocumentException {
         GenericItems.gerarCabecalho(doc, emailUsuario);
+        Paragraph p = new Paragraph();
+        p.setAlignment(Element.ALIGN_LEFT);
+        p.add(new Chunk(
+                "Relatório dos rodízios de penus do veículo: " + plate, new Font(Font.FontFamily.HELVETICA, 15, Element.TITLE, BaseColor.BLACK
+        )));
     }
 
     @Override
@@ -98,7 +103,7 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
             PdfWriter.getInstance(doc, new FileOutputStream(arquivoPdf));
             doc.open();
 
-            gerarCabecalho(doc, emailUsuario);
+            gerarCabecalho(doc, emailUsuario, casters.get(0).getVehiclePlate());
             int totKm = gerarCorpo(casters, doc);
             gerarRodape(doc, casters, totKm, periodo);
 

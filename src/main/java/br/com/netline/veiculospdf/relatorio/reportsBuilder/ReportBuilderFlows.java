@@ -29,7 +29,7 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
     }
 
     @Override
-    public void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException {
+    public void gerarCabecalho(Document doc, String emailUsuario, String plate) throws DocumentException {
         GenericItems.gerarCabecalho(doc, emailUsuario);
 //        Paragraph p = new Paragraph();
 //        p.setAlignment(Element.ALIGN_LEFT);
@@ -195,7 +195,7 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
             PdfWriter.getInstance(doc, new FileOutputStream(arquivoPdf));
             doc.open();
 
-            gerarCabecalho(doc, emailUsuario);
+            gerarCabecalho(doc, emailUsuario, "");
             int totKm = gerarCorpo(fluxos, doc);
             gerarRodape(doc, fluxos, totKm, periodo);
 
