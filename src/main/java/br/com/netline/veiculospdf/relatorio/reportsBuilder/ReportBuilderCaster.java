@@ -35,6 +35,7 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
         p.add(new Chunk(
                 "Relatório dos rodízios de penus do veículo: " + plate, new Font(Font.FontFamily.HELVETICA, 15, Element.TITLE, BaseColor.BLACK
         )));
+        doc.add(p);
     }
 
     @Override
