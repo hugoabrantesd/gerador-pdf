@@ -33,8 +33,10 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
         Paragraph p = new Paragraph();
         p.setAlignment(Element.ALIGN_LEFT);
         p.add(new Chunk(
-                "Relatório dos rodízios de penus do veículo: " + plate, new Font(Font.FontFamily.HELVETICA, 15, Element.TITLE, BaseColor.BLACK
+                "Relatório dos rodízios de penus do veículo: " + plate, new Font(Font.FontFamily.HELVETICA, 13, Element.TITLE, BaseColor.BLACK
         )));
+        doc.add(p);
+        p = new Paragraph(" ");
         doc.add(p);
     }
 
