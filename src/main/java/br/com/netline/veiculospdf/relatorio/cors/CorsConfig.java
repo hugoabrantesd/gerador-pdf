@@ -25,6 +25,10 @@ public class CorsConfig {
                         .allowedMethods("GET","POST")
                         .allowedHeaders("*")
                         .allowedOrigins("*");
+                registry.addMapping("/gerarRelatorioRodizio")
+                        .allowedMethods("GET","POST")
+                        .allowedHeaders("*")
+                        .allowedOrigins("*");
 
             }
         };
