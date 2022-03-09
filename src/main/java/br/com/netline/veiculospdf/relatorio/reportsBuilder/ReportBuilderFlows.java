@@ -2,7 +2,6 @@ package br.com.netline.veiculospdf.relatorio.reportsBuilder;
 
 import br.com.netline.veiculospdf.relatorio.interfaces.ReportFlows;
 import br.com.netline.veiculospdf.relatorio.model.FlowModel;
-import br.com.netline.veiculospdf.relatorio.model.Utils;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -13,7 +12,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.List;
 
-public class ReportBuilderFlows implements ReportFlows {
+public class ReportBuilderFlows implements ReportFlows<FlowModel> {
 
     private Paragraph paragraphTitleColumn(String title, int fontSize, BaseColor fontColor) {
         Paragraph p = new Paragraph();
@@ -31,7 +30,7 @@ public class ReportBuilderFlows implements ReportFlows {
 
     @Override
     public void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException {
-        ReportHeader.gerarCabecalho(doc, emailUsuario);
+        GenericItems.gerarCabecalho(doc, emailUsuario);
 //        Paragraph p = new Paragraph();
 //        p.setAlignment(Element.ALIGN_LEFT);
 //        p.add(new Chunk(
@@ -181,12 +180,10 @@ public class ReportBuilderFlows implements ReportFlows {
                 new Font(Font.FontFamily.HELVETICA, 10, Element.TITLE, BaseColor.BLACK
                 )));
         doc.add(p);
-
     }
 
     @Override
     public byte[] gerarRelatorio(List<FlowModel> fluxos, String periodo, String emailUsuario) {
-
         Document doc = new Document();
         doc.setPageSize(PageSize.A4.rotate());
         String arquivoPdf = "Relatório.pdf";

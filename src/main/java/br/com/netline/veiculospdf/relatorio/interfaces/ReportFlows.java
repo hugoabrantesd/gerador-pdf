@@ -6,14 +6,15 @@ import com.itextpdf.text.DocumentException;
 
 import java.util.List;
 
-public interface ReportFlows {
+public interface ReportFlows <T> {
 
     void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException;
 
-    int gerarCorpo(List<FlowModel> fluxos, Document doc) throws DocumentException;
+    int gerarCorpo(List<T> object, Document doc) throws DocumentException;
 
-    void gerarRodape(Document doc, List<FlowModel> fluxos, int totKm, String periodo) throws DocumentException;
+    void gerarRodape(Document doc, List<T> object, int totKm, String periodo) throws DocumentException;
 
-    byte[] gerarRelatorio(List<FlowModel> fluxos, String periodo, String emailUsuario);
+    byte[] gerarRelatorio(List<T> object, String periodo, String emailUsuario);
 
+//    int gerarCorpo(List<FlowModel> fluxos, Document doc) throws DocumentException;
 }

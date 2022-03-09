@@ -46,26 +46,38 @@ public class ReportController {
             byte[] f = relatorioBuilder.gerarRelatorio(fluxosList, periodo, emailUsuario);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
-            // Here you have to set the actual filename of your pdf
             String filename = "output.pdf";
             headers.setContentDispositionFormData(filename, filename);
             headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
             return new ResponseEntity<>(f, headers, HttpStatus.OK);
-//            return new ResponseEntity<>(new byte[0], new HttpHeaders(), HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new ResponseEntity<>(new byte[0], new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @CrossOrigin
-    @PostMapping(value = "/gerarRelatorioRodizio", produces = "application/text", consumes = "application/text")
-    public String generateReportCaster(@RequestBody String vehiclePlate, HttpServletRequest servletRequest){
+    @PostMapping(value = "/gerarRelatorioRodizio", produces = "application/text", consumes = "application/json")
+    public ResponseEntity<byte[]> generateReportCaster(@RequestBody String json, HttpServletRequest servletRequest) {
         //String plate = jsonPlate;
-        new ReportBuilderCaster().buildReport(vehiclePlate);
-        return "teste".toUpperCase();
+        try {
+            HashMap<String, String> body = new Gson().fromJson(json, HashMap.class);
+            String emailUser = body.get("email");
+            String plate = body.get("vehiclePlate");
+
+            byte[] f = new ReportBuilderCaster().buildReport(emailUser, plate);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            String filename = "Relatorio_rodizios.pdf";
+            headers.setContentDispositionFormData(filename, filename);
+            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+            return new ResponseEntity<>(f, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new byte[0], new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

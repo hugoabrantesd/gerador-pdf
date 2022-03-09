@@ -18,7 +18,6 @@ public class Main {
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
-        // CasterRepository().getAllCasters("ABC1234");
 //        LogRepository repository = new LogRepository();
 //
 //        LogModel log = LogModel.builder()
