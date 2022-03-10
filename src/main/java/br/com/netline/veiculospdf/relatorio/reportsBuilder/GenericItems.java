@@ -23,7 +23,7 @@ public class GenericItems {
         p = new Paragraph();
         p.setAlignment(Element.ALIGN_LEFT);
         p.add(new Chunk(
-                "Identificador do usuário: " + emailUsuario,
+                "Relatório gerado por: " + emailUsuario,
                 new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
                 )));
         doc.add(p);
