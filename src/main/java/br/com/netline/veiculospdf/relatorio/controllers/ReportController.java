@@ -67,6 +67,9 @@ public class ReportController {
             String emailUser = body.get("email");
             String plate = body.get("vehiclePlate");
 
+            System.out.println("email: " + emailUser);
+            System.out.println("placa: " + plate);
+
             byte[] f = new ReportBuilderCaster().buildReport(emailUser, plate);
 
             HttpHeaders headers = new HttpHeaders();

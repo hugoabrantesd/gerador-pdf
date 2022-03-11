@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 public class CasterController {
     @CrossOrigin
     @PostMapping(value = "/registerCaster", produces = "application/text", consumes = "application/json")
-    public String registerCaster(@RequestBody String caster, HttpServletRequest request) {
-        CasterModel casterModel = new Gson().fromJson(caster, CasterModel.class);
+    public String registerCaster(@RequestBody String jsonCaster, HttpServletRequest request) {
+        CasterModel casterModel = new Gson().fromJson(jsonCaster, CasterModel.class);
         if (casterModel != null) {
             CasterRepository casterRepository = new CasterRepository();
             casterRepository.saveCaster(casterModel);

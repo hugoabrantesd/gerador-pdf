@@ -23,7 +23,7 @@ public class CasterRepository {
 
         List<CasterModel> casters = jpaPersistence.getEntityManager()
                 .createNamedQuery("getAll", CasterModel.class)
-                .setParameter("vehicleplate", vehiclePlate)
+                .setParameter("placa", vehiclePlate)
                 .getResultList();
         jpaPersistence.getEntityManager().close();
 
