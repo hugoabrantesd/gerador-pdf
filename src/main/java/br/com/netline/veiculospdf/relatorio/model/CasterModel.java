@@ -15,15 +15,21 @@ import java.util.UUID;
 @Builder
 @Entity
 @NamedQueries(
-        @NamedQuery(
-                name = "getAll",
-                query = "SELECT c FROM CasterModel c WHERE placa_veiculo = :placa")
+        {
+                @NamedQuery(
+                        name = "getAll",
+                        query = "SELECT c FROM CasterModel c WHERE placa_veiculo = :placa"),
+                @NamedQuery(
+                        name = "getLastCaster",
+                        query = "SELECT c FROM CasterModel c WHERE placa_veiculo = :placa ORDER BY c.id DESC")
+        }
 )
 public class CasterModel implements Serializable {
 
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(unique = true)
-//    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private Integer id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

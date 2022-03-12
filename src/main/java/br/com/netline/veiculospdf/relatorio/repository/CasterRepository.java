@@ -18,12 +18,25 @@ public class CasterRepository {
         jpaPersistence.getEntityManager().close();
     }
 
-    public List<CasterModel> getAllCasters(String vehiclePlate) {
+    public CasterModel getLastCaster(String vehiclePlate) {
         jpaPersistence.getEntityManager().getTransaction().begin();
 
         List<CasterModel> casters = jpaPersistence.getEntityManager()
                 .createNamedQuery("getAll", CasterModel.class)
                 .setParameter("placa", vehiclePlate)
+                .getResultList();
+        jpaPersistence.getEntityManager().close();
+
+        //System.out.println(casters);
+        return casters.get(casters.size() - 1);
+    }
+
+    public List<CasterModel> getAllCasters(String lastCaster) {
+        jpaPersistence.getEntityManager().getTransaction().begin();
+
+        List<CasterModel> casters = jpaPersistence.getEntityManager()
+                .createNamedQuery("getLastCaster", CasterModel.class)
+                .setParameter("placa", lastCaster)
                 .getResultList();
         jpaPersistence.getEntityManager().close();
 

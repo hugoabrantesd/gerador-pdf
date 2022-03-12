@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class CasterController {
@@ -23,4 +24,17 @@ public class CasterController {
         }
         return "401";
     }
+
+    @CrossOrigin
+    @PostMapping(value = "/recuperaUltimoRodizio", produces = "application/text", consumes = "application/json")
+    public String getAllCasters(@RequestBody String jsonCaster, HttpServletRequest request) {
+        CasterModel casterModel = new Gson().fromJson(jsonCaster, CasterModel.class);
+        if (casterModel != null) {
+            CasterRepository casterRepository = new CasterRepository();
+            CasterModel caster = casterRepository.getLastCaster(casterModel.getVehiclePlate());
+            return new Gson().toJson(caster);
+        }
+        return "401";
+    }
+
 }
