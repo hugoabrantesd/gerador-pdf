@@ -9,26 +9,30 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig {
     @Bean
-    public WebMvcConfigurer corsConfigurer(){
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/gerar-pdf")
-                        .allowedMethods("GET","POST")
+                        .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*");
+                        .allowedOrigins("*")
+                        .allowCredentials(true);
                 registry.addMapping("/registerLog")
-                        .allowedMethods("GET","POST")
+                        .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*");
+                        .allowedOrigins("*")
+                        .allowCredentials(true);
                 registry.addMapping("/registerCaster")
-                        .allowedMethods("GET","POST")
+                        .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*");
+                        .allowedOrigins("*")
+                        .allowCredentials(true);
                 registry.addMapping("/gerarRelatorioRodizio")
-                        .allowedMethods("GET","POST")
+                        .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*");
+                        .allowedOrigins("*")
+                        .allowCredentials(true);
 
             }
         };
