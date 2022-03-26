@@ -16,23 +16,19 @@ public class CorsConfig {
                 registry.addMapping("/gerar-pdf")
                         .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*")
-                        .allowCredentials(true);
+                        .allowedOrigins("*");
                 registry.addMapping("/registerLog")
                         .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*")
-                        .allowCredentials(true);
+                        .allowedOrigins("*");
                 registry.addMapping("/registerCaster")
                         .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*")
-                        .allowCredentials(true);
+                        .allowedOrigins("*");
                 registry.addMapping("/gerarRelatorioRodizio")
                         .allowedMethods("GET", "POST")
                         .allowedHeaders("*")
-                        .allowedOrigins("*")
-                        .allowCredentials(true);
+                        .allowedOrigins("*");
 
             }
         };
