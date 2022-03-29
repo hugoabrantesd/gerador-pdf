@@ -70,7 +70,7 @@ public class Main {
         connector.setScheme("http");
         connector.setPort(8081);
         connector.setSecure(true);
-        connector.setRedirectPort(8443);
+        connector.setRedirectPort(443);
         return connector;
     }
 
