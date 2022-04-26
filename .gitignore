@@ -13,9 +13,7 @@ netlinetelecom.p12
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-/src/main/resources
-netlinetelecom.p12
-keystore.p12
+/src/main/resources/
 
 ### STS ###
 .apt_generated
