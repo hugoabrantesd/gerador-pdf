@@ -7,10 +7,13 @@ target/maven-status
 target/surefire-reports
 target/test-classes
 target/server.jar.original
+keystore.p12
+netlinetelecom.p12
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/src/main/resources
 
 ### STS ###
 .apt_generated
