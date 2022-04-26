@@ -14,6 +14,8 @@ netlinetelecom.p12
 !**/src/main/**/target/
 !**/src/test/**/target/
 /src/main/resources
+netlinetelecom.p12
+keystore.p12
 
 ### STS ###
 .apt_generated
