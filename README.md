@@ -8,7 +8,7 @@ Requisitos funcionais:
 - Gerar relatório em PDF dos registros de fluxo de entrada e saída dos veículos;
 - Gerar relatório em PDF dos dados de manutenção dos veículos;
 - Armazenar informações dos registros de fluxo de entrada e saída dos veículos;
-- Retornar informarções das manutenções dos veículos;
+- Armazenar e retornar dados de manutenção dos veículos;
 - Armazenar logs das ações realizadas;
 
 Tecnologias utilizadas:
