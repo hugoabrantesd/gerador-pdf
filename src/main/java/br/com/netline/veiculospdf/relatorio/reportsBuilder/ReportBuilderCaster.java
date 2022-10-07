@@ -22,18 +22,14 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
         if (casters.isEmpty()) {
             return new byte[0];
         }
-//        System.out.println(casters.size());
-//        casters.forEach((element) -> System.out.println(element.getVehiclePlate()));
 
-        //TODO: inserir novos dados no rodapé do relatório.
-
-        return this.gerarRelatorio(casters, "", emailUser);
+        return this.generateReport(casters, "", emailUser);
     }
 
 
     @Override
-    public void gerarCabecalho(Document doc, String emailUsuario, String plate) throws DocumentException {
-        GenericItems.gerarCabecalho(doc, emailUsuario);
+    public void generateHeader(Document doc, String emailUsuario, String plate) throws DocumentException {
+        GenericItems.generateHeader(doc, emailUsuario);
         Paragraph p = new Paragraph();
         p.setAlignment(Element.ALIGN_LEFT);
         p.add(new Chunk(
@@ -47,7 +43,7 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
     }
 
     @Override
-    public int gerarCorpo(List<CasterModel> casters, Document doc) throws DocumentException {
+    public int generateBody(List<CasterModel> casters, Document doc) throws DocumentException {
         PdfPTable table = new PdfPTable(9);
         table.setRunDirection(0);
         table.setWidthPercentage(100);
@@ -139,7 +135,6 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
             cell8 = new PdfPCell(p8);
             cell8.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell9 = new PdfPCell(p9);
-//            cell9.setHorizontalAlignment(Element.ALIGN_CENTER);
 
             table.addCell(cell1);
             table.addCell(cell2);
@@ -156,29 +151,28 @@ public class ReportBuilderCaster implements ReportFlows<CasterModel> {
     }
 
     @Override
-    public void gerarRodape(Document doc, List<CasterModel> caster, int totKm, String periodo) {
+    public void generateBaseboard(Document doc, List<CasterModel> caster, int totKm, String periodo) {
     }
 
     @Override
-    public byte[] gerarRelatorio(List<CasterModel> casters, String periodo, String emailUsuario) {
+    public byte[] generateReport(List<CasterModel> casters, String period, String userEmail) {
         Document doc = new Document();
         doc.setPageSize(PageSize.A4.rotate());
-        String arquivoPdf = "Relatório.pdf";
+        String pdfFile = "Relatório.pdf";
 
         try {
 
-            PdfWriter.getInstance(doc, new FileOutputStream(arquivoPdf));
+            PdfWriter.getInstance(doc, new FileOutputStream(pdfFile));
             doc.open();
 
-            gerarCabecalho(doc, emailUsuario, casters.get(0).getVehiclePlate());
-            int totKm = gerarCorpo(casters, doc);
-            gerarRodape(doc, casters, totKm, periodo);
+            generateHeader(doc, userEmail, casters.get(0).getVehiclePlate());
+            int totKm = generateBody(casters, doc);
+            generateBaseboard(doc, casters, totKm, period);
 
             doc.close();
 
-            File file = new File(arquivoPdf);
+            File file = new File(pdfFile);
             return Files.readAllBytes(file.toPath());
-//            return byteArray.toByteArray();
 
         } catch (Exception e) {
             e.printStackTrace();

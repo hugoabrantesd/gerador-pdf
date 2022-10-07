@@ -8,9 +8,9 @@
         <properties>
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://172.16.2.18:5432/controleveiculos" />
-            <property name="javax.persistence.jdbc.user" value="hugo" />
-            <property name="javax.persistence.jdbc.password" value="13111992" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://${DATABASE_IP}/${DATABASE_PORT}" />
+            <property name="javax.persistence.jdbc.user" value="${DATABASE_USER}" />
+            <property name="javax.persistence.jdbc.password" value="${DATABASE_PASSWORD}" />
 
             <property name="hibernate.hbm2ddl.auto" value="update" />
 

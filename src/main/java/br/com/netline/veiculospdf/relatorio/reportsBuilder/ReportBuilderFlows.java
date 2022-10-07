@@ -29,39 +29,12 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
     }
 
     @Override
-    public void gerarCabecalho(Document doc, String emailUsuario, String plate) throws DocumentException {
-        GenericItems.gerarCabecalho(doc, emailUsuario);
-//        Paragraph p = new Paragraph();
-//        p.setAlignment(Element.ALIGN_LEFT);
-//        p.add(new Chunk(
-//                "Netline Telecom", new Font(Font.FontFamily.HELVETICA, 24, Element.TITLE, BaseColor.BLACK
-//        )));
-//        doc.add(p);
-//
-//        p = new Paragraph();
-//        p.setAlignment(Element.ALIGN_LEFT);
-//        p.add(new Chunk(
-//                "Data: " + Utils.dateToString(),
-//                new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
-//                )));
-//        doc.add(p);
-//
-//        p = new Paragraph();
-//        p.setAlignment(Element.ALIGN_LEFT);
-//        p.add(new Chunk(
-//                "Identificador do usuário: " + emailUsuario,
-//                new Font(Font.FontFamily.HELVETICA, 11, Element.TITLE, BaseColor.DARK_GRAY
-//                )));
-//        doc.add(p);
-//
-//        p = new Paragraph(" ");
-//        doc.add(p);
-//        p = new Paragraph(" ");
-//        doc.add(p);
+    public void generateHeader(Document doc, String emailUsuario, String plate) throws DocumentException {
+        GenericItems.generateHeader(doc, emailUsuario);
     }
 
     @Override
-    public int gerarCorpo(List<FlowModel> fluxos, Document doc) throws DocumentException {
+    public int generateBody(List<FlowModel> flows, Document doc) throws DocumentException {
         PdfPTable table = new PdfPTable(7);
         table.setRunDirection(0);
         table.setWidthPercentage(100);
@@ -92,8 +65,7 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
 
         int totKm = 0;
 
-        for (FlowModel f : fluxos) {
-            //int totKmParcial = 0;
+        for (FlowModel f : flows) {
             p1 = paragraphTitleColumn(f.getNomeTecnico(), 11, BaseColor.DARK_GRAY);
             p2 = customParagraph(f.getDataSaida() + " - "
                             + f.getHoraSaida() + " - " + f.getKmSaida(),
@@ -131,7 +103,7 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
     }
 
     @Override
-    public void gerarRodape(Document doc, List<FlowModel> fluxos, int totKm, String periodo) throws DocumentException {
+    public void generateBaseboard(Document doc, List<FlowModel> flows, int totKm, String period) throws DocumentException {
         Paragraph p = new Paragraph();
 
         p.setAlignment(Element.ALIGN_RIGHT);
@@ -160,7 +132,7 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
         p = new Paragraph();
         p.setAlignment(Element.ALIGN_RIGHT);
         p.add(new Chunk(
-                "Total registros: " + fluxos.size(),
+                "Total registros: " + flows.size(),
                 new Font(Font.FontFamily.HELVETICA, 12, Element.TITLE, BaseColor.BLACK
                 )));
         doc.add(p);
@@ -168,7 +140,7 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
         p = new Paragraph();
         p.setAlignment(Element.ALIGN_RIGHT);
         p.add(new Chunk(
-                "Período deste relatório: " + periodo,
+                "Período deste relatório: " + period,
                 new Font(Font.FontFamily.HELVETICA, 12, Element.TITLE, BaseColor.BLACK
                 )));
         doc.add(p);
@@ -183,27 +155,24 @@ public class ReportBuilderFlows implements ReportFlows<FlowModel> {
     }
 
     @Override
-    public byte[] gerarRelatorio(List<FlowModel> fluxos, String periodo, String emailUsuario) {
+    public byte[] generateReport(List<FlowModel> flows, String period, String userEmail) {
         Document doc = new Document();
         doc.setPageSize(PageSize.A4.rotate());
-        String arquivoPdf = "Relatório.pdf";
-
-//        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        String pdfFile = "Relatório.pdf";
 
         try {
 
-            PdfWriter.getInstance(doc, new FileOutputStream(arquivoPdf));
+            PdfWriter.getInstance(doc, new FileOutputStream(pdfFile));
             doc.open();
 
-            gerarCabecalho(doc, emailUsuario, "");
-            int totKm = gerarCorpo(fluxos, doc);
-            gerarRodape(doc, fluxos, totKm, periodo);
+            generateHeader(doc, userEmail, "");
+            int totKm = generateBody(flows, doc);
+            generateBaseboard(doc, flows, totKm, period);
 
             doc.close();
 
-            File file = new File(arquivoPdf);
+            File file = new File(pdfFile);
             return Files.readAllBytes(file.toPath());
-//            return byteArray.toByteArray();
 
         } catch (Exception e) {
             e.printStackTrace();

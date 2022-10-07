@@ -22,8 +22,13 @@ public class LogModel implements Serializable {
     @Column(unique = true)
     private UUID uuid;
 
-    private String email_usuario;
-    private String data;
-    private String acao_realizada;
+    @Column(name = "email_usuario")
+    private String userEmail;
+
+    @Column(length = 10, name = "data")
+    private String date;
+
+    @Column(name = "acao_realizada")
+    private String actionPerformed;
 
 }

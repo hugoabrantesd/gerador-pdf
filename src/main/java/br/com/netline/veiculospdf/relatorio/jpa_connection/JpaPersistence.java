@@ -1,4 +1,4 @@
-package br.com.netline.veiculospdf.relatorio.connection;
+package br.com.netline.veiculospdf.relatorio.jpa_connection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,8 +11,8 @@ public class JpaPersistence {
 
     private EntityManager entityManager;
 
-    public EntityManager getEntityManager(){
-        if(entityManager == null){
+    public EntityManager getEntityManager() {
+        if (entityManager == null) {
             entityManager = entityManagerFactory.createEntityManager();
         }
         return entityManager;

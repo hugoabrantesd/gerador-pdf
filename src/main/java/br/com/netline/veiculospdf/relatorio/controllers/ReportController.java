@@ -1,6 +1,5 @@
 package br.com.netline.veiculospdf.relatorio.controllers;
 
-import br.com.netline.veiculospdf.relatorio.model.CasterModel;
 import br.com.netline.veiculospdf.relatorio.reportsBuilder.ReportBuilderCaster;
 import br.com.netline.veiculospdf.relatorio.reportsBuilder.ReportBuilderFlows;
 import br.com.netline.veiculospdf.relatorio.model.FlowModel;
@@ -16,16 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @RestController
+@RequestMapping("/report")
 public class ReportController {
 
     @CrossOrigin
-    @GetMapping(value = "/")
-    public String home() {
-        return "Servidor ON!";
-    }
-
-    @CrossOrigin
-    @PostMapping(value = "/gerar-pdf", produces = "application/text", consumes = "application/json")
+    @GetMapping(produces = "application/text", consumes = "application/json")
     public ResponseEntity<byte[]> gerarPdf(@RequestBody HashMap<String, Object> flows, HttpServletRequest request) {
         ReportBuilderFlows relatorioBuilder = new ReportBuilderFlows();
         //System.out.println(request.getRequestURL().toString());
@@ -43,7 +37,7 @@ public class ReportController {
                 fluxosList.add(FlowModel.fromMap(o));
             }
 
-            byte[] f = relatorioBuilder.gerarRelatorio(fluxosList, periodo, emailUsuario);
+            byte[] f = relatorioBuilder.generateReport(fluxosList, periodo, emailUsuario);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             String filename = "output.pdf";
@@ -59,7 +53,7 @@ public class ReportController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/gerarRelatorioRodizio", produces = "application/text", consumes = "application/json")
+    @GetMapping(value = "/relatorio-rodizio", produces = "application/text", consumes = "application/json")
     public ResponseEntity<byte[]> generateReportCaster(@RequestBody String json, HttpServletRequest servletRequest) {
         //String plate = jsonPlate;
         try {

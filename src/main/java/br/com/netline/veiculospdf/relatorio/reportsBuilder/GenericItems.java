@@ -4,7 +4,7 @@ import br.com.netline.veiculospdf.relatorio.model.Utils;
 import com.itextpdf.text.*;
 
 public class GenericItems {
-    static public void gerarCabecalho(Document doc, String emailUsuario) throws DocumentException {
+    static public void generateHeader(Document doc, String emailUsuario) throws DocumentException {
         Paragraph p = new Paragraph();
         p.setAlignment(Element.ALIGN_LEFT);
         p.add(new Chunk(

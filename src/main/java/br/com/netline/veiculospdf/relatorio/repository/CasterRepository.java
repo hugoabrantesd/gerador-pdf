@@ -1,6 +1,6 @@
 package br.com.netline.veiculospdf.relatorio.repository;
 
-import br.com.netline.veiculospdf.relatorio.connection.JpaPersistence;
+import br.com.netline.veiculospdf.relatorio.jpa_connection.JpaPersistence;
 import br.com.netline.veiculospdf.relatorio.model.CasterModel;
 
 import java.util.List;

@@ -1,10 +1,7 @@
 package br.com.netline.veiculospdf.relatorio.repository;
 
-import br.com.netline.veiculospdf.relatorio.connection.JpaPersistence;
+import br.com.netline.veiculospdf.relatorio.jpa_connection.JpaPersistence;
 import br.com.netline.veiculospdf.relatorio.model.LogModel;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class LogRepository {
 
