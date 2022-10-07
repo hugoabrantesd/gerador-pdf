@@ -18,6 +18,9 @@ Tecnologias utilizadas:
 - JPA
 - Hibernate
 
+Este projeto está integrado a uma aplicação front-end. Esta não foi publicada pois há dados sensíveis.
+O sistema completo foi desenvolvido em prol da empresa onde trabalho.
+
 # Autor
 
 Hugo Abrantes de Lira
