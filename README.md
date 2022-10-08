@@ -13,7 +13,7 @@ Requisitos funcionais:
 
 Tecnologias utilizadas:
 - Java
-- Spring Boot
+- Spring Boot/MVC/Data
 - PostgreSQL
 - JPA
 - Hibernate
