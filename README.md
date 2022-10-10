@@ -9,7 +9,7 @@ Requisitos funcionais:
 - Gerar relatório em PDF dos dados de manutenção dos veículos;
 - Armazenar informações dos registros de fluxo de entrada e saída dos veículos;
 - Armazenar e retornar dados de manutenção dos veículos;
-- Armazenar logs das ações realizadas;
+- Armazenar logs das ações realizadas.
 
 Tecnologias utilizadas:
 - Java
