@@ -1,7 +1,7 @@
 # Report Generator
 
 ## Sobre o projeto
-O Report Generator é um projeto Java que consiste em coletar os dados enviados pelo front-end, gerar um relatório PDF e enviá-lo como resposta.
+O Report Generator é um projeto backend desenvolvido em Java que consiste em coletar os dados recebidos do front-end através da REST API, gerar um relatório PDF e enviá-lo como resposta.
 O sistema também utiliza um banco de dados para armazanemar informações sobre manutenção de veículos.
 
 Requisitos funcionais:
