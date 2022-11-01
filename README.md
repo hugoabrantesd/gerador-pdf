@@ -23,6 +23,4 @@ O sistema completo foi desenvolvido em prol da empresa onde trabalho.
 
 # Autor
 
-Hugo Abrantes de Lira
-
-Linkedin: https://www.linkedin.com/in/hugoabrantesd
+- Hugo Abrantes de Lira -> Linkedin: https://www.linkedin.com/in/hugoabrantesd
